@@ -308,24 +308,6 @@ SOCKS_VERSION = 5
 class Proxy:
 
 
-    def __init__(self):
-        self.username = "username"
-        self.password = "username"
-        self.packet = b''
-        self.sendmode = 'client-0-'
-        global connection
-    def handle_client(self, connection):
-        version, nmethods = connection.recv(2)
-        methods = self.get_available_methods(nmethods, connection)
-        if 2   in set(methods):
-            if 2 in set(methods):
-                connection.sendall(bytes([SOCKS_VERSION, 2]))
-            else:
-                connection.sendall(bytes([SOCKS_VERSION, 0]))
-
-        if not self.verify_credentials(connection,methods):
-            return
-        version, cmd, _, address_type = connection.recv(4)
 
         if address_type == 1:
             address = socket.inet_ntoa(connection.recv(4))
